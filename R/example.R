@@ -1,8 +1,5 @@
 # this file is for testing and learning to use datatrack.
-# It allows the user to generate and save example data in a datatrack project
-
-
-# for this example, we will generate 6 data objects with a few versions each
+# Running the examples will create a directory where the datatrack project used in the examples will be saved
 
 
 #' @export
@@ -61,11 +58,8 @@ ExampleB <- function () {
     data8.v2 <- WriteDataobject(.RandomDataFrame(), name = 'ranking', params = list('weights' = list('weather' = 0.2, 'radar' = 0.2), 'clusters' = 0.6), dependencies = list('clustering.1' = data6.v4, 'weather' = data1.v1, 'radar.wthr' = data2.v1))  
     data8.v3 <- WriteDataobject(.RandomDataFrame(), name = 'ranking', params = list('weights' = list('weather' = 0.2, 'radar' = 0.2), 'clusters' = 0.6), dependencies = list('clustering.1' = data6.v5, 'weather' = data1.v1, 'radar.wthr' = data2.v1))  
     data8.v4 <- WriteDataobject(.RandomDataFrame(), name = 'ranking', params = list('weights' = list('weather' = 0.2, 'radar' = 0.2), 'clusters' = 0.6), dependencies = list('clustering.1' = data6.v6, 'weather' = data1.v1, 'radar.wthr' = data2.v1))  
-    
-    
-    
-    
-    
+
+    return(GetChecksum())
     
 }
 
@@ -77,23 +71,19 @@ ExampleB <- function () {
 #' Runs all examples
 #' This should produce consistent set of dataobjects and metadata
 #' @export
-RunAllExamples <- function () {
+ExampleA <- function () {
 
     # this ensures that all random data and parameters will be identical on each run
     set.seed(2)
     .InitialiseExamples(new = TRUE)
-    Example1()
-    #Example2()
-    Example3()
-    Example4()
-    Example5()
-    Example6()
+    ExampleA1()
+    ExampleA2()
+    ExampleA3()
+    ExampleA4()
+    ExampleA5()
+    ExampleA6()
 
-    # I would like to ensure that, if starting with a blank datatrack project, running the examples would produce identical files
-    # (i.e. nothing in the diff)
-    # however, the date time is recorded, which means this is not possible.
-    # therefore we use the checksum function, which removes these variable columns
-
+    # produces checksum after excluding date column to allow comparsion of the relevant metadata for tests
     return(GetChecksum())
 
 }
@@ -101,7 +91,7 @@ RunAllExamples <- function () {
 
 #' Creates a few example data objects with some dependencies between them
 #' @export
-Example1 <- function () {
+ExampleA1 <- function () {
 
     .InitialiseExamples()
 
@@ -139,7 +129,7 @@ Example1 <- function () {
 #' Here, we try to save a data object that has indirect dependencies on different versions of the same
 #' name. This should not be allowed, but currently it is.
 #' @export
-Example2 <- function () {
+ExampleA2 <- function () {
     .InitialiseExamples()
     # "three" version 1 depends on "two" version 1, and "five" version 1 depends on "two" version 2
     # this is not allowed, although currently is will succeed. However, it will fail when trying to read
@@ -150,7 +140,7 @@ Example2 <- function () {
 
 #' Example showing reading data without specifying name
 #' @export
-Example3 <- function () {
+ExampleA3 <- function () {
     .InitialiseExamples()
     userinput::Preset(c('1'))
     on.exit(userinput::Preset())
@@ -160,7 +150,7 @@ Example3 <- function () {
 
 #' Example showing reading data with specifying a name
 #' @export
-Example4 <- function () {
+ExampleA4 <- function () {
     .InitialiseExamples()
     userinput::Preset(c('1'))
     on.exit(userinput::Preset())
@@ -172,7 +162,7 @@ Example4 <- function () {
 #' @details
 #' When 2 or more names are specified, it will return the last accessed version of any of those names
 #' @export
-Example5 <- function () {
+ExampleA5 <- function () {
     .InitialiseExamples()
     obj <- ReadDataobject(name = c('two', 'three'), purpose = 'example 5')
     return(obj)
@@ -181,7 +171,7 @@ Example5 <- function () {
 
 #' Example showing saving non-csv data
 #' @export
-Example6 <- function () {
+ExampleA6 <- function () {
     .InitialiseExamples()
     # create a linear model to save
     one <- c(1,2,3,4,5,6,7,8,9)
@@ -198,7 +188,7 @@ Example6 <- function () {
 #' @details
 #' Annotations can either be a list or just a string. This example saves one of each
 #' @export
-Example7 <- function () {
+ExampleA7 <- function () {
     .InitialiseExamples()
     data <- .RandomDataFrame()
     params <- .RandomParams()

@@ -9,25 +9,28 @@
 #' @details
 #' Gets the metadata in the appropriate json format then passes it to the dataGraph function of the dviewer package
 #' @export
-Inspector <- function (group = FALSE) {
+Inspector <- function (group = FALSE, save.test.data.path = NULL) {
 
     .LoadConfig()
     data <- .DataVis()
-    #uncommet this to save a the metadata into the dviewer package
-    .SaveDemoVisData(data)
+    .SaveDemoVisData(save.test.data.path)
     print(dviewer::dataGraph(data, group));
 }
 
 
 #' Helper function for development only: saves data from datatrack to the dviewer data source
 #' so that it can be tested directly from the dviewer package without needing to use datatrack
+#' @param test_data chraracter the json version of the meta that would get passed to dviewer
+#' @param save.test.data.path character where to save this json
 #'
 #' @details
 #' For dviewer to be tested during development, it needs some test data. In order to get realistic test data
 #' in the appropriate json format, use this function to save data generated from datatrack.
 #' This function is not intended to be used other than for development of the dviewer package
-.SaveDemoVisData <- function (test_data, path.to.package.source = file.path('..','..','custom_packages','dviewer','data')) {
-    save(test_data, file = file.path(path.to.package.source, 'test_data.rda'))
+.SaveDemoVisData <- function (test_data, save.test.data.path = NULL) {
+    if (!is.null(save.test.data.path)) {
+        save(test_data, file = file.path(save.test.data.path, 'test_data.rda')) 
+    }
 }
 
 

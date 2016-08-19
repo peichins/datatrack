@@ -4,7 +4,7 @@
 \alias{Inspector}
 \title{Display the visual datatrack inspector}
 \usage{
-Inspector(group = FALSE)
+Inspector(group = FALSE, save.test.data.path = NULL)
 }
 \arguments{
 \item{group}{string; name of the datatrack data object to filter nodes by.
