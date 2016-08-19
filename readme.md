@@ -3,7 +3,8 @@
 Datatrack is a prototype R package provides wrapper read and write functions that allow specification of data dependencies, parameters and annotations. It can help manage generated data and assist in choosing data that is being read into R by showing a visualization of the dependency graph. 
 
 It should be used in conjunction with the dviewer and userinput R packages. 
-https://github.com/peichins/dviewer
+(https://github.com/peichins/dviewer)
+(https://github.com/peichins/userinput)
 
 ## Installation
 
