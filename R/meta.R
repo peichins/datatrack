@@ -244,7 +244,7 @@ FixMeta <- function (meta) {
                       col.names = .toCsvValue(col.names),
                       callstack = .toCsvValue(callstack),
                       csv = csv,
-                      annotations = .toCsvValue(dependencies),
+                      annotations = .toCsvValue(annotations),
                       system = sysinfo)
     return(row)
 }
