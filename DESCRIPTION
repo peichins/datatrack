@@ -1,6 +1,6 @@
 Package: datatrack
 Title: Manage Metadata Describing Dependencies Between Data Files
-Version: 0.0.0.9000
+Version: 0.0.1
 Author: Philip Eichinski <philip.eichinski@qut.edu.au>
 Maintainer: Philip Eichinski <philip.eichinski@qut.edu.au>
 Description: Provides functions for reading and writing data that record and display
