@@ -4,13 +4,14 @@
 \alias{GetChecksum}
 \title{Compute a Checksum of the Metadata}
 \usage{
-GetChecksum(ignore.cols = c("date", "callstack"), algo = "sha1")
+GetChecksum(ignore.cols = c("date", "callstack", "system"), algo = "sha1")
 }
 \description{
 To quickly compare if the metadata of 2 datatrack projects are the same
 We can computer a checksum which ignores the date column.
 }
 \details{
-After removing the date column of the metadata, performs a hash of the dataframe and returns is
+After removing the columns that don't matter for meta comparisons, 
+e.g date, system, calstack column of the metadata, performs a hash of the dataframe and returns is
 }
 

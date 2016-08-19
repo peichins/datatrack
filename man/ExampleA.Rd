@@ -2,13 +2,16 @@
 % Please edit documentation in R/example.R
 \name{ExampleA}
 \alias{ExampleA}
-\title{Runs all examples
-This should produce consistent set of dataobjects and metadata}
+\title{Example A}
 \usage{
 ExampleA()
 }
 \description{
-Runs all examples
-This should produce consistent set of dataobjects and metadata
+Creates some dummy data, writes it and reads it back
+}
+\details{
+This should produce consistent set of dataobjects and metadata that can be used for testing
+One second wait time between writes, so that the sorting by datetime is always the same. 
+This is only needed for testing to produce consistent metadata for comparison.
 }
 

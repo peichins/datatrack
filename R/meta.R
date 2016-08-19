@@ -7,9 +7,10 @@
 #' We can computer a checksum which ignores the date column.
 #'
 #' @details
-#' After removing the date column of the metadata, performs a hash of the dataframe and returns is
+#' After removing the columns that don't matter for meta comparisons, 
+#' e.g date, system, calstack column of the metadata, performs a hash of the dataframe and returns is
 #' @export
-GetChecksum <- function (ignore.cols = c('date', 'callstack'), algo = 'sha1') {
+GetChecksum <- function (ignore.cols = c('date', 'callstack', 'system'), algo = 'sha1') {
     if (!requireNamespace("digest", quietly = TRUE)) {
         stop("Package \"digest\" needed to generate checksum. Please install it",
              call. = FALSE)
@@ -100,7 +101,9 @@ FixMeta <- function (meta) {
 }
 
 
-#' updates the "file.exists" column of the meta csv
+#' Perform some meta verification
+#' 
+#' Updates the "file.exists" column of the meta csv and sorts the meta data frame into the correct order
 #'
 #' @param meta data.frame optional if ommitted will read from disk
 #' @details
@@ -108,6 +111,7 @@ FixMeta <- function (meta) {
 #' files may get deleted, however this should not necessarily
 #' mean the meta row should be deleted, since it can still be
 #' used to show information about dependencies.
+#' Also writes meta again at the end incase anything changed. 
 .VerifyMeta <- function (meta = NULL) {
 
     if (is.null(meta)) {
@@ -124,7 +128,7 @@ FixMeta <- function (meta) {
     if (!"callstack" %in% colnames(meta)) {
         meta$callstack = '';
     }
-
+    meta <- .SortMeta(meta)
     .WriteMeta(meta)
     return(meta)
 }
@@ -133,8 +137,22 @@ FixMeta <- function (meta) {
 #' @param meta data.frame
 .WriteMeta <- function (meta) {
     path <- file.path(pkg.env$meta.dir, 'meta.csv')
-    meta <- meta[order(meta$date, decreasing = TRUE), ]
+    meta <- .SortMeta(meta)
     write.csv(meta, path, row.names = FALSE)
+}
+
+#' Sort the metadata
+#' 
+#' sorts the metadata for consistency
+#' @param meta dataframe
+#' @details
+#' There are some situations where we need the metadata to be in a consistent order
+#' For example comparing metadata for tests
+#' in most cases meta$date should be sufficient however there may be duplicate datetimes if 
+#' the data objects are generated very quickly sugh 
+.SortMeta <- function (meta) {
+    meta <- meta[order(meta$date, meta$name, meta$version, decreasing = TRUE), ]  
+    return(meta)
 }
 
 #' Returns the metadata row for the given name/version pair
