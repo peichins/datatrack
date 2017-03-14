@@ -33,7 +33,7 @@ ReadMeta <- function () {
     } else {
         return(.CreateEmptyMeta())
     }
-    meta <- FixMeta(meta)
+    #meta <- FixMeta(meta)
     meta <- .VerifyMeta(meta)
     return(meta)
 }
@@ -119,7 +119,7 @@ FixMeta <- function (meta) {
     }
 
     file.paths <- .DataobjectPath(meta$name, meta$version, meta$csv)
-    files.exist <- file.exists(file.paths) || file.exists(.ZipPath(file.paths))
+    files.exist <- file.exists(file.paths) | file.exists(.ZipPath(file.paths))
     meta$file.exists <- as.integer(files.exist)
 
     if (!"col.names" %in% colnames(meta)) {

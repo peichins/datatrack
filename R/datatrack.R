@@ -182,7 +182,7 @@
  .DataobjectPath <- function (name, version, csv, unzip = FALSE) {
 
     if (!.AllSame(c(length(name), length(version), length(csv)))) {
-        stop('arguments are not of same length')
+        stop(paste('arguments are not of same length', ))
     }
 
     ext <- rep('object', length(csv))
@@ -265,13 +265,17 @@
     } else {
         Inspector(names[1])
 
-        which.version <- userinput::GetUserChoice(choices, optional = optional)
+        which.version <- userinput::GetUserChoice(choices, optional = optional, numbers = name.meta$version)
     }
 
     if (which.version == 0 && optional) {
         return(FALSE)
     } else {
-        return(name.meta[which.version, ])
+        
+        # user has selected a version number
+        # return the row with this version number
+        
+        return(name.meta[name.meta$version == which.version, ])
     }
 
 }
