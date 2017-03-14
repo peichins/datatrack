@@ -12,12 +12,14 @@ pkg.env$config.file.name <- 'datatrack.config.json'
 #' This can be overridden by this function. This is not recommended during normal use of datatrack,
 #' since it needs to be called after datatrack is loaded but before it is used, leaving it prone to error.
 #' It is designed for use for unit testing so that datatrack projects can be created and destroyed
+#' @export
 SetConfigFile <- function (path) {
     pkg.env$config.file.name <- path
 }
 
 #' sets the config values and saves the config file
 #' @param ... name value pairs as arguments or a list of name value pairs
+#' @export
 SetConfig <- function (...) {
     args <- list(...)
     if(is.null(names(args)) && is.list(args[[1]])) {

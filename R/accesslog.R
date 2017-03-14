@@ -1,6 +1,7 @@
 #' Clear the datatrack access log
 #'
 #' Clear the access log used to save the most recently accessed version of each name
+#' @export
 ClearAccessLog <- function () {
     .Report('clear access log', level = 2)
     pkg.env$access.log <- list()
