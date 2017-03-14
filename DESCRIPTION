@@ -1,6 +1,6 @@
 Package: datatrack
 Title: Manage Metadata Describing Dependencies Between Data Files
-Version: 1.0.1-beta.1
+Version: 1.0.2
 Author: Philip Eichinski <philip.eichinski@qut.edu.au>
 Maintainer: Philip Eichinski <philip.eichinski@qut.edu.au>
 Description: Provides functions for reading and writing data that record and display
@@ -12,8 +12,8 @@ License: GPL-2
 LazyData: true
 Imports:
     rjson,
-    userinput (≥ 1.0.0),
-    dviewer (≥ 1.0.0)
+    userinput (>= 1.0.0),
+    dviewer (>= 1.0.0)
 Suggests:
     testthat,
     digest
