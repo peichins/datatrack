@@ -29,7 +29,7 @@
                 # flags here http://linux.die.net/man/1/zip
                 # recursive, compression level 9 (max/slowest), exclude file info, junk paths
                 success <- zip(file.path.zip, file.path, flags = '-r9Xj')
-                print(success)
+                .Report("zip success", success)
 
                 if (success < 2 && file.exists(file.path.zip)) {
                     # error codes: http://www.info-zip.org/FAQ.html#error-codes

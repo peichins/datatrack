@@ -37,8 +37,9 @@ SetConfig <- function (...) {
     defaults <- list()
     # after this many days of not being accessed, data objects will be zipped to save space
     defaults$zip.after.days <- 30
-    # The higher the number, the more reporting
-    defaults$report.level <- 2
+    # only output reports that have at least this level
+    # The higher the number, the less reporting
+    defaults$report.level <- 3
 
     pkg.env$config <- .MergeLists(pkg.env$config, defaults)
 }

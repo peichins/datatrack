@@ -5,7 +5,7 @@
 #' @param level how important is the message
 #' @param nl.before boolean add a new line before the message?
 #' @param nl.after boolean add a new line after the message?
-.Report <- function (..., level = 3, nl.before = FALSE, nl.after = TRUE) {
+.Report <- function (..., level = 2, nl.before = FALSE, nl.after = TRUE) {
 
     if (level >= pkg.env$config$report.level) {
         if (nl.before) cat("\n")

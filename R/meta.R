@@ -4,7 +4,7 @@
 #' Compute a Checksum of the Metadata
 #'
 #' To quickly compare if the metadata of 2 datatrack projects are the same
-#' We can computer a checksum which ignores the date column.
+#' We can compute a checksum which ignores the date column.
 #'
 #' @details
 #' After removing the columns that don't matter for meta comparisons, 
@@ -100,6 +100,41 @@ FixMeta <- function (meta) {
     return(meta.list)
 }
 
+#' discovers the correct value for the csv column based on the existance of a csv file
+#' @param meta data.frame
+#' @return data.frame
+#' For meta data table that has corrupted csv column or values missing, this will look at the files that 
+#' exist and use that information to complete the csv column. This is mainly useful for old datatrack projects 
+#' to be brought up to date with changes to datatrack
+.RepairCsvColumn <- function (meta = NULL) {
+    if (is.null(meta)) {
+        meta <- ReadMeta()
+    }
+    
+    file.paths.csv <- .DataobjectPath(meta$name, meta$version, rep(1, nrow(meta)))
+    file.paths.object <- .DataobjectPath(meta$name, meta$version, rep(0, nrow(meta)))
+    
+    file.is.csv <- meta$csv
+    object.exists <- file.exists(file.paths.object)
+    csv.exists <- file.exists(file.paths.csv)
+    both.exist <- object.exists & csv.exists
+    
+    meta$csv[object.exists] <- 0
+    meta$csv[csv.exists] <- 1
+    
+    #print(data.frame(name = meta$name, v = meta$version, csv.exists = csv.exists, csv.paths = file.paths.csv))
+    
+    
+    if (sum(both.exist) > 0) {
+        .Report("some conflicting data files were found. The following files exist for both .object and .csv. Defaulting to use csv.")
+        conflicting <- paste(meta$name[both.exist], meta$version[both.exist], sep = ":v", collapse = " \n")
+        .Report(conflicting)
+    }
+    
+    return(meta)
+    
+}
+
 
 #' Perform some meta verification
 #' 
@@ -117,6 +152,8 @@ FixMeta <- function (meta) {
     if (is.null(meta)) {
         meta <- ReadMeta()
     }
+    
+    meta <- .RepairCsvColumn(meta)
 
     file.paths <- .DataobjectPath(meta$name, meta$version, meta$csv)
     files.exist <- file.exists(file.paths) | file.exists(.ZipPath(file.paths))

@@ -8,7 +8,7 @@ GetChecksum(ignore.cols = c("date", "callstack", "system"), algo = "sha1")
 }
 \description{
 To quickly compare if the metadata of 2 datatrack projects are the same
-We can computer a checksum which ignores the date column.
+We can compute a checksum which ignores the date column.
 }
 \details{
 After removing the columns that don't matter for meta comparisons, 

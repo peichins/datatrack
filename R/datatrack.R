@@ -186,7 +186,7 @@
     }
 
     ext <- rep('object', length(csv))
-    ext[csv] <- 'csv'
+    ext[as.logical(csv)] <- 'csv'
 
     fn <- paste(as.character(name), sprintf("%03d", as.integer(version)), ext, sep = '.')
     path <- file.path(pkg.env$data.dir, fn)

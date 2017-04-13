@@ -64,7 +64,7 @@ Inspector <- function (group = FALSE, save.test.data.path = NULL) {
 
         versions <- m[m$name == cur,]
         for (v in 1:nrow(versions)) {
-            .Report('adding: ', group.names[g], versions[v], level = 2)
+            .Report('adding: ', group.names[g], versions$version[v], level = 2)
             data[[g]][['versions']][[v]] <- list(v = versions$version[v],
                                                  params = rjson::fromJSON(versions$params[v]),
                                                  links = rjson::fromJSON(versions$dependencies[v]),
