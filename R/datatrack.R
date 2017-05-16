@@ -259,9 +259,12 @@
         # but show them which one is being chosen
         .Report('only one file to choose from; returing it')
 
-
+#TODO: fix this. It was changed so that users choose a version number rather than the index of a list of version numbers. 
+#      this worked for the normal selection, however if there is only one choice and it automatically selects it, that was not adjusted
+#      to account for the change above. See git log for more details on what was changed. 
+        
         .Report(choices[1], level = 1)
-        which.version <- 1
+        which.version <- name.meta$version[1]
     } else {
         Inspector(names[1])
 
