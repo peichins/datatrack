@@ -17,4 +17,3 @@ int the version of the name that was written
 \description{
 Legacy Wrapper for WriteStructuredDataobject
 }
-

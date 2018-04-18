@@ -14,4 +14,3 @@ Sleep for 1 second between writing. This prevents inconsistent sorting of the me
 metadata is sorted by date, name, version, but this function creates identical date-times on some of the writes, 
 but inconsistently (depending on the execution time). This is not ideal, as it takes ages to run examples.
 }
-

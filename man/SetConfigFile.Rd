@@ -18,4 +18,3 @@ This can be overridden by this function. This is not recommended during normal u
 since it needs to be called after datatrack is loaded but before it is used, leaving it prone to error.
 It is designed for use for unit testing so that datatrack projects can be created and destroyed
 }
-

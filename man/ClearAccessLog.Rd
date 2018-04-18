@@ -9,4 +9,3 @@ ClearAccessLog()
 \description{
 Clear the access log used to save the most recently accessed version of each name
 }
-

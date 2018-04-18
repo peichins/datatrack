@@ -12,4 +12,3 @@ Example showing reading data specifying 2 names
 \details{
 When 2 or more names are specified, it will return the last accessed version of any of those names
 }
-

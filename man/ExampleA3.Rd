@@ -9,4 +9,3 @@ ExampleA3()
 \description{
 Example showing reading data without specifying name
 }
-

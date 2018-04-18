@@ -14,4 +14,3 @@ We can compute a checksum which ignores the date column.
 After removing the columns that don't matter for meta comparisons, 
 e.g date, system, calstack column of the metadata, performs a hash of the dataframe and returns is
 }
-

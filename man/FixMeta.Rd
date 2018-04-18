@@ -21,4 +21,3 @@ In specific cases of upgrades, transformations might need to be made to the exis
 happens this function should be added to appropriately. For example, if csv column is removed an a 'class' column
 is addeed instead, then specific tranformation from existing csv = 1 rows to class = 'csv' needs to be coded.
 }
-

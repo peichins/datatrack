@@ -16,4 +16,3 @@ Generate the visualisation of saved data objects, their parameters and dependenc
 \details{
 Gets the metadata in the appropriate json format then passes it to the dataGraph function of the dviewer package
 }
-

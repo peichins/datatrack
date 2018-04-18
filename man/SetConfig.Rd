@@ -12,4 +12,3 @@ SetConfig(...)
 \description{
 sets the config values and saves the config file
 }
-

@@ -9,4 +9,3 @@ ExampleA6()
 \description{
 Example showing saving non-csv data
 }
-

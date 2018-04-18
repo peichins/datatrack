@@ -9,4 +9,3 @@ ExampleA1()
 \description{
 Creates a few example data objects with some dependencies between them
 }
-

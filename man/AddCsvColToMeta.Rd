@@ -14,4 +14,3 @@ In previous versions of datatrack, whether to save as csv was specified in the c
 There was no 'csv' column in the metadata. Although this saved a column, it required more configuration
 This function adds the 'csv' column and populates the rows according to the json config
 }
-

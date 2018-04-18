@@ -36,4 +36,3 @@ The version for the dependency can be ommited (by putting a value < 1). If this 
 of the dependency dataobject. So, the process which generated the dataobject will have accesed some other dataobject it depends on. Then, when it saves its dataobject
 it need only pass the name of the input dataobject without the version, and the function will know which version it was.
 }
-

@@ -12,4 +12,3 @@ Reads the csv of metadata from disk
 \details{
 If the file doesn't exist, creates an empty one with the correct columns
 }
-

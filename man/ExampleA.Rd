@@ -14,4 +14,3 @@ This should produce consistent set of dataobjects and metadata that can be used 
 One second wait time between writes, so that the sorting by datetime is always the same. 
 This is only needed for testing to produce consistent metadata for comparison.
 }
-

@@ -201,6 +201,21 @@ FixMeta <- function (meta) {
 #' @details
 #' Reads the metadata, filters to the correct row, converts to list,
 #' then converts json encoded values to lists
+#' 
+#' @export
+GetMeta <- function (name, version) {
+  return(.GetMeta(name, version))
+}
+
+#' Returns the metadata row for the given name/version pair
+#'
+#' @param name string
+#' @param version int
+#' @return list
+#'
+#' @details
+#' Reads the metadata, filters to the correct row, converts to list,
+#' then converts json encoded values to lists
 .GetMeta <- function (name, version) {
     meta <- ReadMeta()
     meta <- meta[meta$name == name & meta$version == version,]

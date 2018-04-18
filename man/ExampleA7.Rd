@@ -12,4 +12,3 @@ Example showing saving with annotations
 \details{
 Annotations can either be a list or just a string. This example saves one of each
 }
-
