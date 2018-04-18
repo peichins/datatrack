@@ -40,10 +40,13 @@ ClearAccessLog <- function () {
         if (!is.null(pkg.env$access.log[[name]])) {
 
             params.match <- is.null(params) || pkg.env$access.log[[name]]$meta$params == rjson::toJSON(params)
-            dependencies.match <- is.null(dependencies) || pkg.env$access.log[[name]]$meta$dependencies != rjson::toJSON(dependencies)
-            version.match <- is.null(version) || pkg.env$access.log[[name]]$meta$version != version
+            dependencies.match <- is.null(dependencies) || pkg.env$access.log[[name]]$meta$dependencies == rjson::toJSON(dependencies)
+            
+            # if version has been specified by user, we shouldn't need to getLastAccessed, but this is here for completeness
+            version.match <- is.null(version) || pkg.env$access.log[[name]]$meta$version == version
 
             if (params.match && dependencies.match && version.match) {
+                # get the most recent version that matches all supplied fields
                 if (last.accessed.date == FALSE || pkg.env$access.log[[name]]$date.accessed > last.accessed.date) {
                     last.accessed.date <- pkg.env$access.log[[name]]$date.accessed
                     last.accessed.meta <- pkg.env$access.log[[name]]$meta
